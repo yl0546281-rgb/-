@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ספירת לאחור לחתונה של שיעלה ופ'ייגי</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f1723;
+      --bg2:#0b1020;
+      --accent:#ff4da6; /* ורוד בוהק */
+      --accent2:#6ef0ff; /* תכלת בוהק */
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      /* הגדרת גופן ברירת המחדל ל-Montserrat */
+      font-family:'Montserrat',sans-serif;
+      background: url('A_countdown_webpage_webpage_background_for_Shayale.png') center/cover no-repeat fixed,
+                  radial-gradient(circle at 20% 20%,rgba(255,77,166,0.08),transparent 60%),
+                  radial-gradient(circle at 80% 80%,rgba(110,240,255,0.06),transparent 70%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#fff;overflow:hidden;position:relative;
+    }
+    body{
+      margin:0;font-family:'Montserrat',sans-serif;
+      background:radial-gradient(circle at 20% 20%,rgba(255,77,166,0.08),transparent 60%),
+                 radial-gradient(circle at 80% 80%,rgba(110,240,255,0.06),transparent 70%),
+                 linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#fff;overflow:hidden;position:relative;
+    }
+
+    /* שכבות ערפל זוהר */
+    .fog{
+      position:fixed;width:140%;height:140%;top:-20%;left:-20%;
+      background:radial-gradient(circle,var(--accent),transparent 70%);
+      opacity:0.06;filter:blur(120px);
+      animation:fogMove 18s infinite ease-in-out alternate;
+    }
+    .fog:nth-child(2){animation-duration:24s;opacity:0.05}
+    .fog:nth-child(3){animation-duration:30s;opacity:0.04}
+    @keyframes fogMove{
+      0%{transform:translate(0,0) scale(1)}
+      100%{transform:translate(10%,10%) scale(1.3)}
+    }
+
+    /* כרטיס מרכזי */
+    .card{
+      position:relative;z-index:4;min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:40px;
+      animation:cardFloat 6s infinite ease-in-out;
+    }
+    @keyframes cardFloat{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-8px)} 
+      100%{transform:translateY(0)}
+    }
+    
+    /* 💥💥 שיפור: גופן Playfair Display + הגברת זוהר הכותרת 💥💥 */
+    h1{font-size:48px;font-weight:900;text-align:center;margin:0;
+      color:var(--accent2); 
+      animation:titleGlow 1.8s infinite alternate ease-in-out; 
+      letter-spacing: 2px; 
+      font-family: 'Playfair Display', serif; 
+    }
+    @keyframes titleGlow{
+      /* זוהר חזק יותר ומדויק יותר */
+      0%{text-shadow:0 0 10px #fff, 0 0 30px var(--accent), 0 0 60px var(--accent)}
+      100%{text-shadow:0 0 15px #fff, 0 0 45px var(--accent2), 0 0 80px var(--accent2)}
+    }
+
+    p.lead{text-align:center;opacity:0.9;margin-top:12px;font-size:18px}
+
+    .countdown{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+    .unit{
+      background:rgba(255,255,255,0.05);
+      border-radius:16px;padding:20px 26px;text-align:center;
+      min-width:110px;box-shadow:0 0 20px rgba(255,255,255,0.08);
+      animation:unitPop 4s infinite ease-in-out;
+    }
+    @keyframes unitPop{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.12)}
+    }
+
+    .number{font-size:32px;font-weight:900}
+    .label{font-size:14px;opacity:0.8;margin-top:6px}
+
+    /* טבעת אקשן מוגברת */
+    .ring{
+      position:absolute;
+      right:40px;
+      top:140px;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:conic-gradient(var(--accent2), var(--accent), var(--accent2));
+      display:grid;
+      place-items:center;
+      box-shadow:0 0 30px rgba(255,255,255,0.18), 0 0 60px rgba(110,240,255,0.25);
+      animation:ringWave 6s ease-in-out infinite;
+    }
+    @keyframes ringWave{
+      0%{transform:scale(1) rotate(0deg)}
+      50%{transform:scale(1.15) rotate(12deg)}
+      100%{transform:scale(1) rotate(0deg)}
+    }100%{transform:rotate(360deg)}}
+
+    .ring span{
+      background:rgba(0,0,0,0.4);padding:14px 28px;border-radius:14px;
+      font-size:30px;font-weight:900;
+      backdrop-filter:blur(6px);
+      animation:datePulse 3s infinite ease-in-out;
+    }
+    @keyframes datePulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.12)}
+    }
+
+    /* טיקר */
+    .marquee{margin-top:26px;width:100%;white-space:nowrap;overflow:hidden}
+    .marquee p{
+      display:inline-block;padding-right:40px;animation:marq 14s linear infinite;font-size:18px;
+    }
+    @keyframes marq{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+    
+    /* סטייל לכפתור נגן המוזיקה */
+    .music-btn{
+        position:fixed; bottom:20px; left:20px; z-index:999; 
+        background:rgba(255,255,255,0.15); color:#fff; 
+        border:1px solid var(--accent2); padding:10px 15px; border-radius:8px; 
+        cursor:pointer; backdrop-filter:blur(4px); transition:0.3s;
+    }
+    .music-btn:hover{
+        background:rgba(255,255,255,0.25);
+    }
+
+  </style>
+</head>
+<body>
+
+<audio id="background-music" loop>
+    <source src="JJ.mp3" type="audio/mp3">
+</audio>
+
+<button id="music-toggle" class="music-btn" onclick="toggleMusic()">נגן מוזיקה 🎶</button>
+
+<div class="fog"></div>
+<div class="fog" style="animation-duration:12s;opacity:0.08;filter:blur(160px);"></div>
+<div class="fog" style="animation-duration:30s;opacity:0.05;filter:blur(200px);"></div>
+<div class="fog" style="animation-duration:20s;opacity:0.07;filter:blur(180px);"></div>
+<div class="fog"></div>
+<div class="fog"></div>
+
+<div class="card">
+
+  <div style="display:flex;gap:40px;justify-content:center;margin-bottom:30px;z-index:5;position:relative;">
+    <img src="GG.png" alt="תמונה של הכלה" style="width:180px;height:180px;border-radius:50%;object-fit:cover;box-shadow:0 0 20px rgba(255,255,255,0.4);">
+    <img src="HH.png" alt="תמונה של החתן" style="width:180px;height:180px;border-radius:50%;object-fit:cover;box-shadow:0 0 20px rgba(255,255,255,0.4);">
+  </div>
+  <h1>ספירת לאחור לחתונה של שיעלה ופ'ייגי</h1>
+  <p class="lead">האתר סופר בדיוק כמה נשאר עד **החתונה הגדולה** <br>של שיעלה ופ'ייגי. כהכנה לשמחה הגדולה ביום הגדול בעז"ה</p>
+
+  <div class="countdown" id="countdown">
+    <div class="unit"><div class="number" id="days">00</div><div class="label">ימים</div></div>
+    <div class="unit"><div class="number" id="hours">00</div><div class="label">שעות</div></div>
+    <div class="unit"><div class="number" id="minutes">00</div><div class="label">דקות</div></div>
+    <div class="unit"><div class="number" id="seconds">00</div><div class="label">שניות</div></div>
+  </div>
+
+  <div class="ring" style="position:absolute; right:40px; top:140px; margin-top:0; transform:translateY(0);">
+      <span id="centerLabel">17/03/26</span>
+    </div>
+
+  <div class="marquee"><p>שמרו את התאריך - כ"ח אדר תשפ"ו • בשעה טובה ומוצלחת •</p></div>
+</div>
+
+<script>
+// לוגיקת ספירה לאחור
+const target = new Date(2026,2,17,18,0,0);
+function update(){
+  const now = new Date();
+  let diff = target - now;
+  if(diff<0) diff = 0;
+  days.textContent = String(Math.floor(diff/1000/60/60/24)).padStart(2,'0');
+  hours.textContent = String(Math.floor(diff/1000/60/60)%24).padStart(2,'0');
+  minutes.textContent = String(Math.floor(diff/1000/60)%60).padStart(2,'0');
+  seconds.textContent = String(Math.floor(diff/1000)%60).padStart(2,'0');
+}
+setInterval(update,1000);
+update();
+
+// לוגיקת הפעלה/השתקה של מוזיקה
+const audio = document.getElementById('background-music');
+const toggleButton = document.getElementById('music-toggle');
+
+function toggleMusic() {
+    if (audio.paused) {
+        audio.play().catch(error => {
+            console.error("Music playback blocked:", error);
+        });
+        toggleButton.textContent = 'השתק 🔇';
+    } else {
+        audio.pause();
+        toggleButton.textContent = 'נגן מוזיקה 🎶';
+    }
+}
+</script>
+
+
+<canvas id="crazyParticles" style="position:fixed;inset:0;z-index:2;pointer-events:none"></canvas>
+<script>
+const pCanvas = document.getElementById('crazyParticles');
+const pCtx = pCanvas.getContext('2d');
+let W = pCanvas.width = innerWidth;
+let H = pCanvas.height = innerHeight;
+
+window.addEventListener('resize', ()=>{
+  W = pCanvas.width = innerWidth;
+  H = pCtx.height = innerHeight;
+});
+
+let particles = [];
+const confettiImages = [];
+// 🟢 תיקון סופי: שימוש ב-PNG 🟢
+const imagePaths = ["GG.png", "HH.png"]; 
+let imagesLoaded = 0;
+let started = false;
+
+// פונקציה להפעלת אפקט הקונפטי
+function startConfetti() {
+    if (started) return;
+    started = true;
+    setInterval(spawn, 120);
+    loop();
+}
+
+// טעינת התמונות מראש
+function loadImages() {
+  imagePaths.forEach((path, index) => {
+    const img = new Image();
+    img.src = path;
+    img.onload = () => {
+      imagesLoaded++;
+      if (imagesLoaded === imagePaths.length) {
+        startConfetti();
+      }
+    };
+    img.onerror = () => {
+        console.warn(`Failed to load image: ${path}`);
+    };
+    confettiImages.push(img);
+  });
+  
+  // 💥 טיימר גיבוי 💥
+  setTimeout(() => {
+    if (!started) {
+        console.warn("Forcing confetti start after 2s timeout.");
+        startConfetti();
+    }
+  }, 2000); 
+}
+
+// יצירת חלקיק חדש (יכול להיות תמונה או עיגול)
+function spawn(isMouseSpawn = false){
+  const numToSpawn = isMouseSpawn ? 12 : 6; 
+  for(let i=0;i<numToSpawn;i++){
+    const canUseImage = confettiImages.length > 0 && imagesLoaded === imagePaths.length;
+    const type = canUseImage && (Math.random() < 0.35) ? 'image' : 'circle';
+
+    const clientX = isMouseSpawn && event ? event.clientX : Math.random()*W; 
+    const clientY = isMouseSpawn && event ? event.clientY : Math.random()*H;
+
+    let particle = {
+      x: clientX,
+      y: clientY,
+      vx: (Math.random()-0.5)*(isMouseSpawn ? 4 : 2),
+      vy: (Math.random()-0.5)*(isMouseSpawn ? 4 : 2),
+      life: isMouseSpawn ? 90 : (Math.random()*100+60)
+    };
+
+    if (type === 'image') {
+      particle.type = 'image';
+      particle.img = confettiImages[Math.floor(Math.random() * confettiImages.length)];
+      particle.size = Math.random()*10 + 15; 
+      particle.rotation = Math.random() * Math.PI * 2; 
+      particle.rotationSpeed = (Math.random() - 0.5) * 0.1; 
+    } else {
+      particle.type = 'circle';
+      particle.size = Math.random()*6+2;
+      particle.color = `hsl(${Math.random()*360},80%,60%)`;
+    }
+    particles.push(particle);
+  }
+}
+
+// תגובה לעכבר (יוצר חלקיקים מהירים יותר)
+window.addEventListener('mousemove',e=>{
+  if (started) {
+    spawn(true, e);
+  }
+});
+
+// לולאת ציור החלקיקים
+function loop(){
+  pCtx.clearRect(0,0,W,H);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.life--;
+
+    if (p.type === 'image') {
+      p.rotation += p.rotationSpeed; 
+      pCtx.save(); 
+      pCtx.translate(p.x, p.y); 
+      pCtx.rotate(p.rotation); 
+      pCtx.globalAlpha = p.life / 90; 
+
+      // ⭐️ ציור התמונה כעיגול עם אפקט זוהר ⭐️
+      pCtx.beginPath();
+      pCtx.arc(0, 0, p.size / 2, 0, Math.PI * 2); 
+      pCtx.closePath();
+      pCtx.clip(); 
+
+      pCtx.shadowBlur = 8; 
+      pCtx.shadowColor = `rgba(255, 255, 255, ${p.life / 180})`; 
+      
+      pCtx.drawImage(p.img, -p.size/2, -p.size/2, p.size, p.size); 
+      
+      pCtx.restore(); 
+    } else {
+      pCtx.beginPath();
+      pCtx.fillStyle=p.color;
+      pCtx.globalAlpha = p.life / (p.life > 90 ? p.life : 90); 
+      pCtx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      pCtx.fill();
+    }
+    
+    if(p.life<=0) particles.splice(i,1);
+  });
+  pCtx.globalAlpha = 1; 
+  requestAnimationFrame(loop);
+}
+
+// מתחילים לטעון את התמונות ברגע שהסקריפט נטען
+loadImages();
+
+</script>
+</body>
+</html>
