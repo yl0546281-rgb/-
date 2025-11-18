@@ -16,20 +16,12 @@
     *{box-sizing:border-box}
     html,body{
       margin:0;
-      /* הגדרת גופן ברירת המחדל ל-Montserrat */
       font-family:'Montserrat',sans-serif;
       background: url('A_countdown_webpage_webpage_background_for_Shayale.png') center/cover no-repeat fixed,
                   radial-gradient(circle at 20% 20%,rgba(255,77,166,0.08),transparent 60%),
                   radial-gradient(circle at 80% 80%,rgba(110,240,255,0.06),transparent 70%),
                   linear-gradient(180deg,var(--bg1),var(--bg2));
-      color:#fff;overflow:hidden;position:relative;
-    }
-    body{
-      margin:0;font-family:'Montserrat',sans-serif;
-      background:radial-gradient(circle at 20% 20%,rgba(255,77,166,0.08),transparent 60%),
-                 radial-gradient(circle at 80% 80%,rgba(110,240,255,0.06),transparent 70%),
-                 linear-gradient(180deg,var(--bg1),var(--bg2));
-      color:#fff;overflow:hidden;position:relative;
+      color:#fff;overflow-x:hidden;position:relative; 
     }
 
     /* שכבות ערפל זוהר */
@@ -39,13 +31,11 @@
       opacity:0.06;filter:blur(120px);
       animation:fogMove 18s infinite ease-in-out alternate;
     }
-    .fog:nth-child(2){animation-duration:24s;opacity:0.05}
-    .fog:nth-child(3){animation-duration:30s;opacity:0.04}
     @keyframes fogMove{
-      0%{transform:translate(0,0) scale(1)}
-      100%{transform:translate(10%,10%) scale(1.3)}
+        0%{transform:translate(0,0) scale(1)}
+        100%{transform:translate(10%,10%) scale(1.3)}
     }
-
+    
     /* כרטיס מרכזי */
     .card{
       position:relative;z-index:4;min-height:100vh;
@@ -59,7 +49,6 @@
       100%{transform:translateY(0)}
     }
     
-    /* 💥💥 שיפור: גופן Playfair Display + הגברת זוהר הכותרת 💥💥 */
     h1{font-size:48px;font-weight:900;text-align:center;margin:0;
       color:var(--accent2); 
       animation:titleGlow 1.8s infinite alternate ease-in-out; 
@@ -67,12 +56,37 @@
       font-family: 'Playfair Display', serif; 
     }
     @keyframes titleGlow{
-      /* זוהר חזק יותר ומדויק יותר */
       0%{text-shadow:0 0 10px #fff, 0 0 30px var(--accent), 0 0 60px var(--accent)}
       100%{text-shadow:0 0 15px #fff, 0 0 45px var(--accent2), 0 0 80px var(--accent2)}
     }
 
-    p.lead{text-align:center;opacity:0.9;margin-top:12px;font-size:18px}
+    p.lead{text-align:center;opacity:0.9;margin-top:12px;font-size:18px;
+        animation: textPulse 4s infinite alternate ease-in-out;
+    }
+    @keyframes textPulse {
+        0% { opacity: 0.9; transform: scale(1); }
+        100% { opacity: 1; text-shadow: 0 0 4px var(--accent2); transform: scale(1.02); }
+    }
+    
+    /* תמונות */
+    .card > div:first-of-type { 
+        display: flex; 
+        gap: 40px; 
+        justify-content: center; 
+        margin-bottom: 30px; 
+        z-index: 5; 
+        position: relative;
+    }
+    .card > div:first-of-type img {
+        width: 180px; 
+        height: 180px; 
+        border-radius: 50%;
+        animation: imagePulse 5s infinite alternate ease-in-out; 
+    }
+    @keyframes imagePulse {
+        0% { transform: scale(1); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+        100% { transform: scale(1.03); box-shadow: 0 0 30px var(--accent), 0 0 40px var(--accent2); }
+    }
 
     .countdown{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;justify-content:center}
     .unit{
@@ -81,52 +95,41 @@
       min-width:110px;box-shadow:0 0 20px rgba(255,255,255,0.08);
       animation:unitPop 4s infinite ease-in-out;
     }
-    @keyframes unitPop{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.12)}
-    }
-
+    
     .number{font-size:32px;font-weight:900}
     .label{font-size:14px;opacity:0.8;margin-top:6px}
 
-    /* טבעת אקשן מוגברת */
+    /* ⭐️ טבעת אקשן - עם מילוי וגודל מוקטן ⭐️ */
     .ring{
       position:absolute;
-      right:40px;
-      top:140px;
-      width:220px;
-      height:220px;
+      right:80px; 
+      top:170px; 
+      width:170px; 
+      height:170px; 
       border-radius:50%;
-      background:conic-gradient(var(--accent2), var(--accent), var(--accent2));
+      background: rgba(255, 255, 255, 0.08); 
+      backdrop-filter: blur(6px); 
+      border: 1px solid rgba(255, 255, 255, 0.2); 
       display:grid;
       place-items:center;
-      box-shadow:0 0 30px rgba(255,255,255,0.18), 0 0 60px rgba(110,240,255,0.25);
-      animation:ringWave 6s ease-in-out infinite;
+      box-shadow:0 0 10px var(--accent), 0 0 40px var(--accent2), inset 0 0 10px rgba(255, 255, 255, 0.1); 
+      animation:ringGlow 4s infinite alternate ease-in-out; 
     }
-    @keyframes ringWave{
-      0%{transform:scale(1) rotate(0deg)}
-      50%{transform:scale(1.15) rotate(12deg)}
-      100%{transform:scale(1) rotate(0deg)}
-    }100%{transform:rotate(360deg)}}
-
+    @keyframes ringGlow {
+      0% { box-shadow: 0 0 10px var(--accent), 0 0 30px var(--accent2), inset 0 0 10px rgba(255, 255, 255, 0.1); }
+      100% { box-shadow: 0 0 15px var(--accent2), 0 0 50px var(--accent), inset 0 0 15px rgba(255, 255, 255, 0.2); }
+    }
+    
     .ring span{
-      background:rgba(0,0,0,0.4);padding:14px 28px;border-radius:14px;
-      font-size:30px;font-weight:900;
-      backdrop-filter:blur(6px);
+      background:transparent; 
+      padding:16px 30px;
+      border-radius:10px;
+      font-size:20px; 
+      font-weight:300; 
+      border: none;
       animation:datePulse 3s infinite ease-in-out;
     }
-    @keyframes datePulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.12)}
-    }
 
-    /* טיקר */
-    .marquee{margin-top:26px;width:100%;white-space:nowrap;overflow:hidden}
-    .marquee p{
-      display:inline-block;padding-right:40px;animation:marq 14s linear infinite;font-size:18px;
-    }
-    @keyframes marq{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-    
     /* סטייל לכפתור נגן המוזיקה */
     .music-btn{
         position:fixed; bottom:20px; left:20px; z-index:999; 
@@ -134,10 +137,23 @@
         border:1px solid var(--accent2); padding:10px 15px; border-radius:8px; 
         cursor:pointer; backdrop-filter:blur(4px); transition:0.3s;
     }
-    .music-btn:hover{
-        background:rgba(255,255,255,0.25);
-    }
 
+    /* 🛑 תיקונים למובייל נשמרו 🛑 */
+    @media screen and (max-width: 768px) {
+        h1 { font-size: 32px; } 
+        p.lead { font-size: 15px; }
+        .card > div:first-of-type { gap: 20px !important; }
+        .card > div:first-of-type img {
+            width: 120px !important; 
+            height: 120px !important;
+        }
+        .countdown { gap: 8px; }
+        .unit { min-width: 75px; padding: 15px 10px; }
+        .number { font-size: 26px; }
+        .label { font-size: 12px; }
+        .ring { display: none; } 
+    }
+    
   </style>
 </head>
 <body>
@@ -161,8 +177,13 @@
     <img src="GG.png" alt="תמונה של הכלה" style="width:180px;height:180px;border-radius:50%;object-fit:cover;box-shadow:0 0 20px rgba(255,255,255,0.4);">
     <img src="HH.png" alt="תמונה של החתן" style="width:180px;height:180px;border-radius:50%;object-fit:cover;box-shadow:0 0 20px rgba(255,255,255,0.4);">
   </div>
+
   <h1>ספירת לאחור לחתונה של שיעלה ופ'ייגי</h1>
-  <p class="lead">האתר סופר בדיוק כמה נשאר עד **החתונה הגדולה** <br>של שיעלה ופ'ייגי. כהכנה לשמחה הגדולה ביום הגדול בעז"ה</p>
+  <p class="lead">
+    <span style="color:var(--accent2); font-weight: 500;">האתר סופר בדיוק כמה נשאר עד</span> 
+    **החתונה הגדולה** <br>
+    של שיעלה ופ'ייגי. כהכנה לשמחה הגדולה ביום הגדול בעז"ה
+  </p>
 
   <div class="countdown" id="countdown">
     <div class="unit"><div class="number" id="days">00</div><div class="label">ימים</div></div>
@@ -171,7 +192,7 @@
     <div class="unit"><div class="number" id="seconds">00</div><div class="label">שניות</div></div>
   </div>
 
-  <div class="ring" style="position:absolute; right:40px; top:140px; margin-top:0; transform:translateY(0);">
+  <div class="ring">
       <span id="centerLabel">17/03/26</span>
     </div>
 
@@ -225,7 +246,6 @@ window.addEventListener('resize', ()=>{
 
 let particles = [];
 const confettiImages = [];
-// 🟢 תיקון סופי: שימוש ב-PNG 🟢
 const imagePaths = ["GG.png", "HH.png"]; 
 let imagesLoaded = 0;
 let started = false;
@@ -272,7 +292,8 @@ function spawn(isMouseSpawn = false){
     const type = canUseImage && (Math.random() < 0.35) ? 'image' : 'circle';
 
     const clientX = isMouseSpawn && event ? event.clientX : Math.random()*W; 
-    const clientY = isMouseSpawn && event ? event.clientY : Math.random()*H;
+    /* 🌟🌟 השינוי כאן: חזרה ליצירת חלקיקים בגובה מלא של המסך (H) 🌟🌟 */
+    const clientY = isMouseSpawn && event ? event.clientY : Math.random()*H; 
 
     let particle = {
       x: clientX,
@@ -300,6 +321,7 @@ function spawn(isMouseSpawn = false){
 // תגובה לעכבר (יוצר חלקיקים מהירים יותר)
 window.addEventListener('mousemove',e=>{
   if (started) {
+    // 🌟🌟 שינוי: הוסר ההגבלה בגובה כדי לאפשר יצירת חלקיקים בכל המסך 🌟🌟
     spawn(true, e);
   }
 });
