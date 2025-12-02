@@ -16,7 +16,7 @@
   --bg2:#1a1528;
   --accent:#ff6bbf;
   --accent2:#4deeea;
-  --accent3:#ffd700;
+  --accent3:#ffd700; /* זהב */
   --glass:rgba(255,255,255,0.06);
 }
 
@@ -58,6 +58,8 @@ body{
 .orb {
     position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: 0;
     animation: floatOrb 20s infinite alternate ease-in-out;
+    /* שיפור ביצועים: רמז לדפדפן */
+    will-change: transform; 
 }
 .orb-1 { width: 400px; height: 400px; background: #ff6bbf; top: -100px; left: -100px; animation-duration: 25s; }
 .orb-2 { width: 300px; height: 300px; background: #4deeea; bottom: -50px; right: -50px; animation-duration: 30s; }
@@ -66,21 +68,20 @@ body{
 
 .bsd { position: absolute; top: 20px; right: 25px; font-family: 'Amatic SC', cursive; font-size: 24px; font-weight: 700; color: rgba(255, 255, 255, 0.6); z-index: 100; pointer-events: none; }
 #confetti{ position:fixed; inset:0; pointer-events:none; z-index:20; }
-#cursor-light { position: fixed; top: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%); transform: translate(-50%, -50%); pointer-events: none; z-index: 1; mix-blend-mode: screen; }
+#cursor-light { position: fixed; top: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%); transform: translate(-50%, -50%); pointer-events: none; z-index: 1; mix-blend-mode: screen; will-change: left, top; }
 
-/* ===== כרטיס ראשי (הוקטן כדי להיכנס למסך) ===== */
+/* ===== כרטיס ראשי ===== */
 .card{
   width:100%; 
-  max-width:800px; /* הוקטן מ-900 */
-  padding:50px 30px 40px; /* הוקטן הריפוד */
+  max-width:800px; 
+  padding:50px 30px 40px; 
   text-align:center;
   border-radius:30px; background:var(--glass); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,0.12); box-shadow:0 25px 60px rgba(0,0,0,0.5);
   position:relative; z-index:5; 
-  /* התנועה המקורית והיפה נשמרת */
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   transform-style: preserve-3d; overflow: hidden;
-  will-change: transform; /* פקודה למעבד הגרפי - מונע תקיעות */
+  will-change: transform; /* שיפור ביצועים קריטי */
   
   animation: simpleFadeIn 1.5s ease-out forwards;
   opacity: 0;
@@ -95,10 +96,10 @@ body{
 .card-content { position: relative; z-index: 2; transform-style: preserve-3d; }
 .ring-badge, .photos, h1, .lead, .sub-lead, .countdown { transform: translateZ(40px); }
 
-/* ===== טבעת תאריך (מוקטנת) ===== */
+/* ===== טבעת תאריך ===== */
 .ring-badge{
   position:absolute; top:20px; left:20px; 
-  width:75px; height:75px; /* הוקטן מ-85 */
+  width:75px; height:75px; 
   border-radius:50%;
   background:rgba(0,0,0,0.2); border:2px solid var(--accent3); display:flex; align-items:center; justify-content:center;
   box-shadow:0 0 20px rgba(255, 215, 0, 0.4); z-index:10; animation: pulseBadge 4s infinite alternate; 
@@ -106,10 +107,10 @@ body{
 .ring-badge span{ font-family: 'Playfair Display', serif; font-size:14px; font-weight:700; color:#fff; text-align:center; line-height:1.1; }
 @keyframes pulseBadge{ from{ border-color: var(--accent3);} to{ border-color: #fff;} }
 
-/* ===== תמונות (מוקטנות) ===== */
+/* ===== תמונות ===== */
 .photos{ display:flex; justify-content:center; gap:25px; margin-bottom:25px; position: relative; }
 .photos img{
-  width:140px; height:140px; /* הוקטן מ-160 */
+  width:140px; height:140px; 
   border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,0.25);
   box-shadow:0 15px 35px rgba(0,0,0,0.4); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: zoom-in;
 }
@@ -130,17 +131,16 @@ body{
 }
 .lightbox.active img { transform: scale(1); }
 
-/* ===== כותרות (מוקטנות) ===== */
+/* ===== כותרות ===== */
 h1{
   font-family: 'Heebo', sans-serif; 
-  font-size:36px; /* הוקטן מ-42 */
+  font-size:36px; 
   font-weight: 900; margin:0 0 10px; letter-spacing: -1px;
   background: linear-gradient(to right, #fff, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   text-shadow: 0 10px 30px rgba(77, 238, 234, 0.3);
 }
 .lead{ opacity:0.9; font-size:18px; font-weight: 300; margin-bottom:5px; color: #ddd; }
 
-/* זהב בהיר ונוצץ (כמו שביקשת) */
 .shimmer-gold {
     background: linear-gradient(to right, #FFD700, #FFF8DC, #FFFFFF, #FFF8DC, #FFD700);
     background-size: 200% auto;
@@ -153,25 +153,25 @@ h1{
 
 .sub-lead { 
     font-family: 'Amatic SC', cursive; 
-    font-size: 32px; /* הוקטן מ-38 */
+    font-size: 32px; 
     margin-top: 0; margin-bottom: 30px; font-weight: 700; 
     min-height: 40px; 
 }
 .cursor-blink { animation: blink 1s infinite; color: #fff; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* ===== ספירה לאחור (מוקטנת) ===== */
+/* ===== ספירה לאחור ===== */
 .countdown{ display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
 .unit{
-  min-width:95px; /* הוקטן מ-110 */
-  padding:15px 10px; /* הוקטן מ-18 */
+  min-width:95px; 
+  padding:15px 10px; 
   border-radius:20px;
   background:linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
   border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(10px);
 }
 .number{
   display:block; font-family: 'Playfair Display', serif; 
-  font-size:36px; /* הוקטן מ-42 */
+  font-size:36px; 
   font-weight:700; 
   color: #FFD700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
@@ -205,18 +205,7 @@ h1{
 .playing .bar:nth-child(4) { animation-duration: 0.5s; }
 @keyframes sound { 0% { height: 3px; opacity: 0.5; } 100% { height: 20px; opacity: 1; } }
 
-/* ===== ניצוצות ===== */
-.sparkle {
-    position: fixed; width: 4px; height: 4px; background: var(--accent3); border-radius: 50%;
-    pointer-events: none; z-index: 999; animation: fadeSparkle 1s forwards;
-    box-shadow: 0 0 5px var(--accent3);
-}
-@keyframes fadeSparkle {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0) translate(0, 20px); opacity: 0; }
-}
-
-/* ===== מובייל (התאמות) ===== */
+/* ===== מובייל ===== */
 @media (max-width: 600px) {
     .card { padding: 60px 15px 30px; width: 95%; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; } 
     h1 { font-size: 26px; line-height: 1.2; }
@@ -361,7 +350,7 @@ document.addEventListener('mousemove', function(e){
     }
 });
 
-/* ===== חלקיקים חכמים (למניעת תקיעות) ===== */
+/* ===== קונפטי ומערכת חלקיקים (התיקון הגדול) ===== */
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
 let W = window.innerWidth;
@@ -393,10 +382,23 @@ canvas.width = W; canvas.height = H;
 const particles = [];
 const colors = ['#ff6bbf', '#4deeea', '#ffd700', '#ffffff', '#b388eb', '#ff7b7b'];
 
+// יצירת ניצוצות ב-Canvas במקום ב-DOM (מונע תקיעות)
+function addSparkle(x, y) {
+    particles.push({
+        x: x, y: y,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        size: Math.random() * 3 + 1,
+        color: '#FFD700',
+        life: 1, // חיי החלקיק
+        type: 'sparkle'
+    });
+}
+
 function addParticle(x, y, isImage, imageSource) {
-    // === הסוד: הגבלת כמות חלקיקים ל-100 ===
-    if (particles.length > 100) particles.shift();
-    
+    // הגבלה חכמה: אם יש יותר מדי חלקיקים, נמחוק את הישנים
+    if (particles.length > 200) particles.shift(); 
+
     particles.push({
         x: x, y: y,
         vx: (Math.random() - 0.5) * (isImage ? 8 : 3),
@@ -409,14 +411,16 @@ function addParticle(x, y, isImage, imageSource) {
         gravity: isImage ? 0.2 : 0 
     });
 }
+
 function spawnParticles() {
-    if (Math.random() < 0.2) addParticle(Math.random() * W, -20, false, null);
+    if (Math.random() < 0.25) addParticle(Math.random() * W, -20, false, null);
     if (miniGG && miniHH && Math.random() < 0.05) {
          const img = Math.random() < 0.5 ? miniGG : miniHH;
          const rect = (Math.random() < 0.5 ? imgGG : imgHH).getBoundingClientRect();
          addParticle(rect.left + rect.width/2, rect.top + rect.height/2, true, img);
     }
 }
+
 function explodeConfetti(x, y) {
     for (let i = 0; i < 20; i++) {
         if (Math.random() > 0.7 && miniGG && miniHH) {
@@ -430,63 +434,44 @@ document.addEventListener('click', (e) => {
     }
 });
 
-/* ===== 3D Tilt חלק ומותאם ביצועים ===== */
+/* ===== 3D Tilt + Logic (עם אופטימיזציה לניצוצות) ===== */
 const light = document.getElementById('cursor-light');
 const card = document.querySelector('.card');
 const sheen = document.querySelector('.card-sheen');
 let lastMouseTime = 0;
-let mouseX = 0, mouseY = 0;
-let tiltRequest = null;
 
 document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    // נקודת אור וניצוצות - קלים לביצוע
-    light.style.left = mouseX + 'px';
-    light.style.top = mouseY + 'px';
+    light.style.left = e.clientX + 'px';
+    light.style.top = e.clientY + 'px';
 
-    if(Math.random() < 0.2) {
-        const sparkle = document.createElement('div');
-        sparkle.classList.add('sparkle');
-        sparkle.style.left = mouseX + 'px';
-        sparkle.style.top = mouseY + 'px';
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 1000);
+    // הוספת ניצוץ לקנבס (במקום ל-DOM) - זה התיקון שמונע תקיעות!
+    if(Math.random() < 0.3) {
+        addSparkle(e.clientX, e.clientY);
     }
 
-    // יצירת חלקיקים בקצב מוגבל
-    const now = Date.now();
-    if (now - lastMouseTime > 50) {
-        if (Math.random() < 0.2 && miniGG && miniHH) {
-             const img = Math.random() < 0.5 ? miniGG : miniHH;
-             addParticle(mouseX, mouseY, true, img);
-        } else { addParticle(mouseX, mouseY, false, null); }
-        lastMouseTime = now;
-    }
-
-    // === הסוד לתנועה חלקה שלא תוקעת את הדפדפן ===
-    if (!tiltRequest) {
-        tiltRequest = requestAnimationFrame(updateTilt);
-    }
-});
-
-function updateTilt() {
     if(window.innerWidth > 600) {
-        const xAxis = (window.innerWidth / 2 - mouseX) / 25; 
-        const yAxis = (window.innerHeight / 2 - mouseY) / 25;
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25; 
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
         
         card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         card.style.boxShadow = `${-xAxis}px ${-yAxis}px 30px rgba(0,0,0,0.5)`;
         
         const rect = card.getBoundingClientRect();
-        const x = mouseX - rect.left;
+        const x = e.clientX - rect.left;
         const width = rect.width;
         
         sheen.style.background = `linear-gradient(125deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${x/width * 100 - 20}%, rgba(255,255,255,0.15) ${x/width * 100}%, rgba(255,255,255,0) ${x/width * 100 + 20}%)`;
     }
-    tiltRequest = null;
-}
+
+    const now = Date.now();
+    if (now - lastMouseTime > 40) {
+        if (Math.random() < 0.2 && miniGG && miniHH) {
+             const img = Math.random() < 0.5 ? miniGG : miniHH;
+             addParticle(e.clientX, e.clientY, true, img);
+        } else { addParticle(e.clientX, e.clientY, false, null); }
+        lastMouseTime = now;
+    }
+});
 
 document.addEventListener('mouseleave', () => {
     card.style.transform = `rotateY(0deg) rotateX(0deg)`;
@@ -496,21 +481,41 @@ document.addEventListener('mouseleave', () => {
 
 function updateAndDraw() {
     ctx.clearRect(0, 0, W, H);
+    
     for (let i = particles.length - 1; i >= 0; i--) {
         let p = particles[i];
-        p.tiltAngle += p.tiltAngleIncr;
-        if(p.type === 'image' || p.gravity) p.vy += p.gravity;
-        p.y += p.vy; p.x += p.vx;
-        let flip = Math.abs(Math.cos(p.tiltAngle)); 
-        if (p.type === 'paper') {
-            ctx.beginPath(); ctx.lineWidth = p.size; ctx.strokeStyle = p.color;
-            ctx.moveTo(p.x + p.size * flip, p.y); ctx.lineTo(p.x, p.y + p.size * 0.6); ctx.stroke();
-        } else if (p.type === 'image') {
-            ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.tiltAngle / 2); 
-            ctx.scale(flip, 1); ctx.drawImage(p.img, -20, -20, 40, 40); ctx.restore();
+        
+        if (p.type === 'sparkle') {
+            // ציור ניצוץ
+            p.y += p.vy;
+            p.life -= 0.05;
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            
+            if (p.life <= 0) particles.splice(i, 1);
+            
+        } else {
+            // ציור קונפטי רגיל
+            p.tiltAngle += p.tiltAngleIncr;
+            if(p.type === 'image' || p.gravity) p.vy += p.gravity;
+            p.y += p.vy; p.x += p.vx;
+            let flip = Math.abs(Math.cos(p.tiltAngle)); 
+            
+            if (p.type === 'paper') {
+                ctx.beginPath(); ctx.lineWidth = p.size; ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.size * flip, p.y); ctx.lineTo(p.x, p.y + p.size * 0.6); ctx.stroke();
+            } else if (p.type === 'image') {
+                ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.tiltAngle / 2); 
+                ctx.scale(flip, 1); ctx.drawImage(p.img, -20, -20, 40, 40); ctx.restore();
+            }
+            if (p.y > H) particles.splice(i, 1);
         }
-        if (p.y > H) particles.splice(i, 1);
     }
+    
     spawnParticles();
     requestAnimationFrame(updateAndDraw);
 }
